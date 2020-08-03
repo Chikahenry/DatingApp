@@ -1,36 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
-  <a class="navbar-brand" href="#">Dating App</a>
-  
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Matches</a>
-      </li>
-     
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
-      </li>
-
-       <li class="nav-item">  
-        <a class="nav-link" href="#">Messages</a>
-      </li>
-      <li class="nav-item">  
-        <a class="nav-link" (click)="logout()">Logout</a>
-      </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
+  <div class="container">
+        <a class="navbar-brand" href="#">Dating App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     
-     <div *ngIf="loggedIn()" class="dropdown">
-       <button class="dropdown-toggle">
-         Welcome User
-       </button>
-       <div class="dropdown-menu">
-         <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
-         <div class="dropdown-divider" ></div>
-         <a class="dropdown-item" href="#"><i class="fa fa-signout"></i>Logout</a>
-       </div>
-     </div>
+      <div *ngIf="loggedIn()" class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Matches</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="#">Lists</a>
+          </li>
+
+          <li class="nav-item">  
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+          
+        </ul>
+      </div>
+      
+      <div *ngIf="loggedIn()" class="dropdown" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle>
+          Welcome {{authService.decodedtoken?.unique_name | titlecase}}
+        </a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+          <div class="dropdown-divider" ></div>
+          <a class="dropdown-item" (click)="logout()"><i class="fa fa-signout"></i>Logout</a>
+        </div>
+      </div>
     <form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
       <input  class="form-control mr-sm-2" name="Username" type="text" placeholder="Username" required [(ngModel)]="model.username" >
       <input class="form-control mr-sm-2" name="Password" type="password" placeholder="Password" required [(ngModel)]="model.password" >
       <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form> 
+  </div>
+  
  </nav>
