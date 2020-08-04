@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
   <div class="container">
-        <a class="navbar-brand" href="#">Dating App</a>
+        <a class="navbar-brand" [routerLink]="['/home']" >Dating App</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,29 +8,29 @@
     
       <div *ngIf="loggedIn()" class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Matches</a>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/members']"  >Matches</a>
           </li>
         
-          <li class="nav-item">
-            <a class="nav-link" href="#">Lists</a>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/lists']"  >Lists</a>
           </li>
 
-          <li class="nav-item">  
-            <a class="nav-link" href="#">Messages</a>
+          <li class="nav-item" routerLinkActive="router-link-active">  
+            <a class="nav-link" [routerLink]="['/messages']" >Messages</a>
           </li>
           
         </ul>
       </div>
       
       <div *ngIf="loggedIn()" class="dropdown" dropdown>
-        <a class="dropdown-toggle text-light" dropdownToggle>
+        <a class="dropdown-toggle text-light" dropdownToggle >
           Welcome {{authService.decodedtoken?.unique_name | titlecase}}
         </a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
           <div class="dropdown-divider" ></div>
-          <a class="dropdown-item" (click)="logout()"><i class="fa fa-signout"></i>Logout</a>
+          <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
         </div>
       </div>
     <form *ngIf="!loggedIn()" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
