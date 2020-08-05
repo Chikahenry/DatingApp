@@ -30,11 +30,11 @@ import { AlertifyService } from './_services/alertify.service';
    ],
    imports: [
       BrowserModule,
-      RouterModule.forRoot(appRoutes),
       HttpClientModule,
       FormsModule,
+      BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
-      BrowserAnimationsModule
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,
