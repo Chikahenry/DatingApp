@@ -12,7 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberComponent } from './members/member/member.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { MemberProfileComponent } from './members/member-profile/member-profile.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -25,7 +27,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { MemberProfileResolver} from './_resolver/member-profile-resolver';
 import { MemberListResolver} from './_resolver/member-list-resolver';
-
+import { MemberEditResolver} from './_resolver/member-edit-resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes-guards';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -45,9 +49,12 @@ export function tokenGetter(){
       HomeComponent,
       RegisterComponent,
       MemberListComponent,
+      MemberEditComponent,
       ListsComponent,
       MemberComponent,
+      PhotoEditorComponent,
       MemberProfileComponent,
+
       MessagesComponent
    ],
    imports: [
@@ -56,6 +63,7 @@ export function tokenGetter(){
       FormsModule,
       BrowserAnimationsModule,
       NgxGalleryModule,
+      FileUploadModule,
       JwtModule.forRoot(
          {
             config: {
@@ -74,9 +82,11 @@ export function tokenGetter(){
       AlertifyService,
       ErrorInterceptorProvider,
       AuthGuard,
+      PreventUnsavedChanges,
       UserService,
       MemberProfileResolver,
       MemberListResolver,
+      MemberEditResolver
       // { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [

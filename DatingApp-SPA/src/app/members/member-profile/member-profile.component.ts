@@ -52,3 +52,4 @@ export class MemberProfileComponent implements OnInit {
   }
 
 }
+ 
